@@ -6,20 +6,13 @@
   <title>JClaw Links Log</title>
   <style>
     :root {
-      --bg: #0d0d0d;
-      --card: #161616;
-      --border: #2a2a2a;
-      --accent: #ff6b35;
-      --accent2: #ff9a5c;
-      --text: #e8e8e8;
-      --muted: #888;
-      --green: #4caf50;
-      --blue: #4fc3f7;
-      --purple: #ce93d8;
+      --bg: #0d0d0d; --card: #161616; --border: #2a2a2a;
+      --accent: #ff6b35; --accent2: #ff9a5c;
+      --text: #e8e8e8; --muted: #888;
+      --green: #4caf50; --blue: #4fc3f7; --purple: #ce93d8; --yellow: #ffd54f;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
-
     header {
       background: linear-gradient(135deg, #1a0a00 0%, #0d0d0d 60%);
       border-bottom: 1px solid var(--border);
@@ -29,77 +22,50 @@
     .fox { font-size: 48px; }
     .header-text h1 { font-size: 28px; font-weight: 700; color: var(--accent); letter-spacing: -0.5px; }
     .header-text p { color: var(--muted); font-size: 14px; margin-top: 4px; }
-
     .stats-bar {
-      display: flex; gap: 24px; padding: 20px 40px;
-      border-bottom: 1px solid var(--border);
-      background: #111;
-      flex-wrap: wrap;
+      display: flex; gap: 32px; padding: 20px 40px;
+      border-bottom: 1px solid var(--border); background: #111; flex-wrap: wrap;
     }
     .stat { text-align: center; }
     .stat .num { font-size: 28px; font-weight: 700; color: var(--accent); }
     .stat .label { font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 1px; margin-top: 2px; }
-
     .filters {
-      padding: 16px 40px;
-      display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+      padding: 16px 40px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
       border-bottom: 1px solid var(--border);
     }
     .filter-label { color: var(--muted); font-size: 13px; }
     .filter-btn {
       background: var(--card); border: 1px solid var(--border); color: var(--text);
-      padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 13px;
-      transition: all 0.2s;
+      padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; transition: all 0.2s;
     }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--accent); border-color: var(--accent); color: #fff;
-    }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .search-input {
       background: var(--card); border: 1px solid var(--border); color: var(--text);
       padding: 6px 14px; border-radius: 20px; font-size: 13px; outline: none;
-      width: 220px; transition: border-color 0.2s;
+      width: 240px; transition: border-color 0.2s;
     }
     .search-input:focus { border-color: var(--accent); }
     .search-input::placeholder { color: var(--muted); }
-
     .timeline { padding: 32px 40px; max-width: 1400px; }
-
     .day-group { margin-bottom: 48px; }
-    .day-header {
-      display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
-    }
-    .day-date {
-      font-size: 13px; font-weight: 700; color: var(--accent);
-      text-transform: uppercase; letter-spacing: 2px;
-    }
+    .day-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+    .day-date { font-size: 13px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
     .day-line { flex: 1; height: 1px; background: var(--border); }
     .day-count {
-      font-size: 12px; color: var(--muted);
-      background: var(--card); border: 1px solid var(--border);
-      padding: 2px 10px; border-radius: 12px;
+      font-size: 12px; color: var(--muted); background: var(--card);
+      border: 1px solid var(--border); padding: 2px 10px; border-radius: 12px;
     }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
-    }
-
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
     .card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 20px;
-      transition: border-color 0.2s, transform 0.2s;
-      display: flex; flex-direction: column; gap: 10px;
-      cursor: pointer;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+      transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; gap: 10px; cursor: pointer;
     }
     .card:hover { border-color: var(--accent); transform: translateY(-2px); }
-
     .card-top { display: flex; align-items: flex-start; gap: 12px; }
     .card-emoji { font-size: 28px; flex-shrink: 0; }
     .card-info { flex: 1; min-width: 0; }
     .card-title { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .card-desc { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
-
     .card-url {
       font-size: 11px; color: var(--accent2);
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -107,39 +73,30 @@
       text-decoration: none; display: block;
     }
     .card-url:hover { text-decoration: underline; }
-
     .card-footer { display: flex; gap: 8px; flex-wrap: wrap; }
-    .tag {
-      font-size: 10px; padding: 2px 8px; border-radius: 10px;
-      text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;
-    }
+    .tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
     .tag-app { background: rgba(76,175,80,0.15); color: var(--green); border: 1px solid rgba(76,175,80,0.3); }
     .tag-sheet { background: rgba(79,195,247,0.15); color: var(--blue); border: 1px solid rgba(79,195,247,0.3); }
-    .tag-github { background: rgba(206,147,216,0.15); color: var(--purple); border: 1px solid rgba(206,147,216,0.3); }
-
-    .hidden { display: none !important; }
-
+    .tag-doc { background: rgba(206,147,216,0.15); color: var(--purple); border: 1px solid rgba(206,147,216,0.3); }
+    .tag-link { background: rgba(255,213,79,0.15); color: var(--yellow); border: 1px solid rgba(255,213,79,0.3); }
     footer { text-align: center; padding: 40px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
   </style>
 </head>
 <body>
-
 <header>
   <div class="fox">🦊</div>
   <div class="header-text">
     <h1>JClaw Links Log</h1>
-    <p>Every link built or referenced — organized by date. Auto-updated.</p>
+    <p>Every link built or referenced — GitHub Pages, Sheets, Docs — organized by date. Auto-updated.</p>
   </div>
 </header>
-
 <div class="stats-bar">
-  <div class="stat"><div class="num" id="total-links">23</div><div class="label">Total Links</div></div>
-  <div class="stat"><div class="num" id="total-apps">22</div><div class="label">GitHub Pages Apps</div></div>
-  <div class="stat"><div class="num" id="total-sheets">1</div><div class="label">Google Sheets</div></div>
-  <div class="stat"><div class="num" id="total-days">9</div><div class="label">Days Active</div></div>
-  <div class="stat"><div class="num" id="last-updated">Apr 8</div><div class="label">Last Updated</div></div>
+  <div class="stat"><div class="num">34</div><div class="label">Total Links</div></div>
+  <div class="stat"><div class="num">32</div><div class="label">GitHub Pages Apps</div></div>
+  <div class="stat"><div class="num">2</div><div class="label">Google Sheets</div></div>
+  <div class="stat"><div class="num">14</div><div class="label">Days Active</div></div>
+  <div class="stat"><div class="num">Apr 15</div><div class="label">Last Updated</div></div>
 </div>
-
 <div class="filters">
   <span class="filter-label">Filter:</span>
   <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
@@ -147,38 +104,19 @@
   <button class="filter-btn" onclick="filterCards('sheet', this)">Sheets</button>
   <input class="search-input" type="text" placeholder="🔍 Search..." oninput="searchCards(this.value)" />
 </div>
-
 <div class="timeline" id="timeline"></div>
-
-<footer>Built by JClaw 🦊 · Scan date: March 31, 2026 · Auto-updated</footer>
+<footer>Built by JClaw 🦊 · Updated April 15, 2026 · Auto-updated on every new deploy</footer>
 
 <script>
 const LINKS = [
   {
-    date: "April 8, 2026",
-    dateKey: "2026-04-08",
-    items: [
-      { emoji: "📋", title: "JClaw Tasks", desc: "Interactive task manager — tap to action, copy updates", url: "https://jcg8802.github.io/jclaw-tasks/", type: "app" }
-    ]
-  },
-  {
-    date: "April 7, 2026",
-    dateKey: "2026-04-07",
-    items: [
-      { emoji: "👟", title: "SOLE Wipes — Investor Deck", desc: "12-slide pitch deck for the SOLE leather shoe wipe brand", url: "https://jcg8802.github.io/sole-wipes-deck/", type: "app" },
-      { emoji: "🏥", title: "Stoa Behavioral — PE Summary", desc: "Visual PE investment memo with downloadable recommendations CSV", url: "https://jcg8802.github.io/stoa-pe-summary/", type: "app" }
-    ]
-  },
-  {
-    date: "March 18, 2026",
-    dateKey: "2026-03-18",
+    date: "March 18, 2026", dateKey: "2026-03-18",
     items: [
       { emoji: "🦊", title: "JClaw", desc: "Base OpenClaw workspace repo", url: "https://jcg8802.github.io/jclaw/", type: "app" }
     ]
   },
   {
-    date: "March 25, 2026",
-    dateKey: "2026-03-25",
+    date: "March 25, 2026", dateKey: "2026-03-25",
     items: [
       { emoji: "🏠", title: "London Flats", desc: "Daily 3BR flat search, Hyde Park area", url: "https://jcg8802.github.io/london-flats/", type: "app" },
       { emoji: "✈️", title: "TravelSpy", desc: "Flight & travel deal tracker", url: "https://jcg8802.github.io/travelspy/", type: "app" },
@@ -186,31 +124,28 @@ const LINKS = [
     ]
   },
   {
-    date: "March 26, 2026",
-    dateKey: "2026-03-26",
+    date: "March 26, 2026", dateKey: "2026-03-26",
     items: [
       { emoji: "📊", title: "Investor Heat Map", desc: "295 investors, 137 firms mapped", url: "https://jcg8802.github.io/investor-heat-map/", type: "app" },
-      { emoji: "🏢", title: "Candosa Mission Control", desc: "Static org dashboard (investors, deals, agents)", url: "https://jcg8802.github.io/candosa-mission-control/", type: "app" },
+      { emoji: "🏢", title: "Candosa Mission Control", desc: "Static org dashboard — investors, deals, agents", url: "https://jcg8802.github.io/candosa-mission-control/", type: "app" },
       { emoji: "🎰", title: "Gekko Dashboard", desc: "Paper trading performance + proof system, GEKKO vs S&P 500", url: "https://jcg8802.github.io/gekko-dashboard/", type: "app" },
-      { emoji: "🌐", title: "Agent Mesh", desc: "Shared world-state concept explainer, shareable writeup", url: "https://jcg8802.github.io/agent-mesh/", type: "app" },
+      { emoji: "🌐", title: "Agent Mesh", desc: "Shared world-state concept explainer", url: "https://jcg8802.github.io/agent-mesh/", type: "app" },
       { emoji: "📋", title: "Candosa CRM Analysis", desc: "CRM data analysis dashboard", url: "https://jcg8802.github.io/candosa-crm-analysis/", type: "app" },
       { emoji: "🎴", title: "Candosa Deck", desc: "Pitch deck / investor presentation", url: "https://jcg8802.github.io/candosa-deck/", type: "app" },
       { emoji: "🍺", title: "Drunk Founders", desc: "Fun project", url: "https://jcg8802.github.io/drunk-founders/", type: "app" },
       { emoji: "⚽", title: "World Cup 2026", desc: "World Cup tracker/app", url: "https://jcg8802.github.io/world-cup-2026/", type: "app" },
       { emoji: "📊", title: "The Spread", desc: "VC/investor intelligence app", url: "https://jcg8802.github.io/the-spread/", type: "app" },
-      { emoji: "📈", title: "Investor CRM Google Sheet", desc: "Live VC intelligence tracker, 295 investors", url: "https://docs.google.com/spreadsheets/d/1-Ih40EYuv0pbEc3Xs1lRp1BtaWCosT6O-aRENERjVh8/edit", type: "sheet" }
+      { emoji: "📈", title: "Investor CRM Sheet", desc: "Live VC intelligence tracker — 295 investors, 137 firms", url: "https://docs.google.com/spreadsheets/d/1-Ih40EYuv0pbEc3Xs1lRp1BtaWCosT6O-aRENERjVh8/edit", type: "sheet" }
     ]
   },
   {
-    date: "March 28, 2026",
-    dateKey: "2026-03-28",
+    date: "March 28, 2026", dateKey: "2026-03-28",
     items: [
       { emoji: "📋", title: "JClaw Kanban", desc: "18 tasks, 5 columns, interactive drag-and-drop board", url: "https://jcg8802.github.io/jclaw-kanban/", type: "app" }
     ]
   },
   {
-    date: "March 29, 2026",
-    dateKey: "2026-03-29",
+    date: "March 29, 2026", dateKey: "2026-03-29",
     items: [
       { emoji: "👟", title: "Sole Wipes Brand", desc: "Brand & packaging concept for SOLE leather shoe wipes", url: "https://jcg8802.github.io/sole-wipes-brand/", type: "app" },
       { emoji: "🎨", title: "Shoe Wipes Concepts", desc: "Round 1: COBBLE, BUFF, LACE brand directions", url: "https://jcg8802.github.io/shoe-wipes-concepts/", type: "app" },
@@ -219,25 +154,63 @@ const LINKS = [
     ]
   },
   {
-    date: "March 30, 2026",
-    dateKey: "2026-03-30",
+    date: "March 30, 2026", dateKey: "2026-03-30",
     items: [
       { emoji: "🧑‍💻", title: "OpenClaw Employee Setup", desc: "Onboarding guide for new OpenClaw employees", url: "https://jcg8802.github.io/openclaw-employee-setup/", type: "app" },
       { emoji: "🦊", title: "Project FoxFunnel", desc: "Sales/lead funnel project", url: "https://jcg8802.github.io/project-foxfunnel/", type: "app" }
     ]
   },
   {
-    date: "March 31, 2026",
-    dateKey: "2026-03-31",
+    date: "March 31, 2026", dateKey: "2026-03-31",
     items: [
-      { emoji: "🦊", title: "JClaw Demo", desc: "JClaw demo app / showcase", url: "https://jcg8802.github.io/jclaw-demo/", type: "app" }
+      { emoji: "🦊", title: "JClaw Demo", desc: "JClaw demo app / showcase", url: "https://jcg8802.github.io/jclaw-demo/", type: "app" },
+      { emoji: "🏨", title: "London Hotels", desc: "Marylebone hotel search for Apr 2–6 London trip", url: "https://jcg8802.github.io/london-hotels/", type: "app" },
+      { emoji: "🍬", title: "VIO Med Spa Analysis", desc: "VIO Med Spa franchise investment analysis", url: "https://jcg8802.github.io/vio-medspa-analysis/", type: "app" }
     ]
   },
   {
-    date: "April 2, 2026",
-    dateKey: "2026-04-02",
+    date: "April 1, 2026", dateKey: "2026-04-01",
+    items: [
+      { emoji: "🏠", title: "Miami Tax Leads", desc: "Miami tax lead pipeline dashboard", url: "https://jcg8802.github.io/miami-tax-leads/", type: "app" },
+      { emoji: "📈", title: "Candosa PPC Strategy", desc: "Google Ads PPC strategy 2026 — campaign structure & targeting", url: "https://jcg8802.github.io/candosa-ppc-strategy/", type: "app" }
+    ]
+  },
+  {
+    date: "April 2, 2026", dateKey: "2026-04-02",
     items: [
       { emoji: "🔗", title: "Links Log", desc: "Every link JClaw has ever built — visual dashboard, auto-updated", url: "https://jcg8802.github.io/links-log/", type: "app" }
+    ]
+  },
+  {
+    date: "April 3, 2026", dateKey: "2026-04-03",
+    items: [
+      { emoji: "📚", title: "JClaw Skills Library", desc: "Browsable library of all JClaw agent skills", url: "https://jcg8802.github.io/jclaw-skills/", type: "app" }
+    ]
+  },
+  {
+    date: "April 7, 2026", dateKey: "2026-04-07",
+    items: [
+      { emoji: "👟", title: "SOLE Investor Deck", desc: "SOLE shoe wipes — investor pitch deck", url: "https://jcg8802.github.io/sole-wipes-deck/", type: "app" },
+      { emoji: "🏥", title: "Stoa PE Summary", desc: "Stoa Behavioral Healthcare — PE investment summary", url: "https://jcg8802.github.io/stoa-pe-summary/", type: "app" }
+    ]
+  },
+  {
+    date: "April 8, 2026", dateKey: "2026-04-08",
+    items: [
+      { emoji: "📋", title: "JClaw Tasks", desc: "Task tracker for JClaw — board view", url: "https://jcg8802.github.io/jclaw-tasks/", type: "app" },
+      { emoji: "📊", title: "Candosa Google Ads Sheet", desc: "Full campaign structure — 6 tabs: Campaigns, Ad Groups, Keywords, Ad Copy, Negatives, Instructions", url: "https://docs.google.com/spreadsheets/d/1gDh0YRl811AtRM0B-FX_mQNVhCs6btpnOnC34G5vaK0", type: "sheet" }
+    ]
+  },
+  {
+    date: "April 9, 2026", dateKey: "2026-04-09",
+    items: [
+      { emoji: "🚀", title: "Candosa Growth Agent", desc: "Candosa Growth Agent — build spec & automation plan", url: "https://jcg8802.github.io/candosa-growth-agent/", type: "app" }
+    ]
+  },
+  {
+    date: "April 10, 2026", dateKey: "2026-04-10",
+    items: [
+      { emoji: "🎮", title: "Blueprint Game", desc: "BLUEPRINT — The Escape Room You Built", url: "https://jcg8802.github.io/blueprint-game/", type: "app" }
     ]
   }
 ];
@@ -247,18 +220,14 @@ let currentFilter = 'all';
 function renderTimeline(filter = 'all', search = '') {
   const timeline = document.getElementById('timeline');
   timeline.innerHTML = '';
-
   const searchLower = search.toLowerCase();
-
-  LINKS.forEach(group => {
+  [...LINKS].reverse().forEach(group => {
     const filtered = group.items.filter(item => {
       const matchesFilter = filter === 'all' || item.type === filter;
       const matchesSearch = !search || item.title.toLowerCase().includes(searchLower) || item.desc.toLowerCase().includes(searchLower);
       return matchesFilter && matchesSearch;
     });
-
     if (filtered.length === 0) return;
-
     const dayGroup = document.createElement('div');
     dayGroup.className = 'day-group';
     dayGroup.innerHTML = `
@@ -293,13 +262,10 @@ function filterCards(type, btn) {
   currentFilter = type;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  const search = document.querySelector('.search-input').value;
-  renderTimeline(type, search);
+  renderTimeline(type, document.querySelector('.search-input').value);
 }
 
-function searchCards(val) {
-  renderTimeline(currentFilter, val);
-}
+function searchCards(val) { renderTimeline(currentFilter, val); }
 
 renderTimeline();
 </script>
